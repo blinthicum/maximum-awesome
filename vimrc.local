@@ -25,7 +25,15 @@ set encoding=utf-8                " Use UTF-8 everywhere.
 set guioptions-=T                 " Hide toolbar.
 set guioptions-=r                 " Don't show right scrollbar
 set number
+set cursorline
 
 colorscheme vividchalk
 
 set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{fugitive#statusline()}%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+
+function! FormatHTML()            " Retab PHP files littered with HTML tags
+set filetype=HTML
+:normal gg=G
+filetype detect
+endfunction
+nnoremap <leader>= :call FormatHTML()<CR>
